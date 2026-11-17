@@ -100,20 +100,15 @@ function showPosition(position) {
 
 function showError() {
 
-alert("Location Error");
-
     document.getElementById("location")
         .innerText =
-        "Location access denied";
+        "Location Error";
 }
 
 
 window.onload = function() {
 
     getLocation();
-alert("Getting Location");
-
-navigator.geolocation.getCurrentPosition
 
     let firstName =
         localStorage.getItem("firstName");
