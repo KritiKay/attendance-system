@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Registration</title>
+</head>
+<body>
+
+<h1>Student Registration</h1>
+
+<p>First Name</p>
+<input id="firstName">
+
+<p>Last Name</p>
+<input id="lastName">
+
+<p>Phone Number</p>
+<input id="phoneNumber">
+
+<br><br>
+
+<button onclick="registerDevice()">
+    Register Device
+</button>
+
+<p id="message"></p>
+
+<p id="location"></p>
+
+<script>
+function registerDevice() {
+
+    let firstName =
+        document.getElementById("firstName").value;
+
+    let lastName =
+        document.getElementById("lastName").value;
+
+    let phoneNumber =
+        document.getElementById("phoneNumber").value;
+
+    localStorage.setItem(
+        "firstName",
+        firstName
+    );
+
+    localStorage.setItem(
+        "lastName",
+        lastName
+    );
+
+    localStorage.setItem(
+        "phoneNumber",
+        phoneNumber
+    );
+
+    let deviceToken =
+    localStorage.getItem("deviceToken");
+ 
+     if (!deviceToken) {
+
+         deviceToken =
+             crypto.randomUUID();
+
+    localStorage.setItem(
+        "deviceToken",
+        deviceToken
+    );
+
+}
+    alert(deviceToken);
+
+    document.getElementById("message").innerText =
+        "✅ Registration Complete";
+}
+
+
+function getLocation() {
+
+    navigator.geolocation.getCurrentPosition(
+        showPosition,
+        showError
+    );
+}
+
+
+function showPosition(position) {
+
+    let latitude =
+        position.coords.latitude;
+
+    let longitude =
+        position.coords.longitude;
+
+    document.getElementById("location")
+        .innerText =
+        "Latitude: " + latitude +
+        " | Longitude: " + longitude;
+}
+
+
+function showError() {
+
+alert("Location Error");
+
+    document.getElementById("location")
+        .innerText =
+        "Location access denied";
+}
+
+
+window.onload = function() {
+
+    getLocation();
+alert("Getting Location");
+
+navigator.geolocation.getCurrentPosition
+
+    let firstName =
+        localStorage.getItem("firstName");
+
+    if(firstName) {
+
+        document.getElementById("message")
+            .innerText =
+            "Welcome back " + firstName;
+    }
+}
+
+</script>
+
+</body>
+</html>
